@@ -1,0 +1,20 @@
+name: Run automated tests 
+
+on: 
+  pull_request:
+    branches:
+      - main
+jobs:
+  TesterRunner:
+    runs-on: ubuntu-latest
+    steps:
+      - name : Checkout project sources
+        uses : actions/checkout@v4
+      - name : Setting up testing enviroment for runner
+        uses : actions/setup-node@v3
+        with : 
+          node-version: '18'
+      - name:  Install npm
+        run: npm install
+      - name: run tests
+        run: npm run test
